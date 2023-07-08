@@ -9,6 +9,7 @@
   width: 286px;
   height: 286px;
   margin: 7px;
+  flex-shrink: 0;
   border-radius: 8px;
 }
 .product-info {
@@ -18,16 +19,23 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   letter-spacing: 0.00153em;
   color: #0e161a;
   margin-top: 0px;
   margin-bottom: 0px;
 }
+.product-info h3{
+  font-size: 17px;
+  font-weight: 500;
+}
 .product-info h3,
 .product-info p {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.product-info p{
+  font-size: 12px;
 }
 .btn-cart {
   border-radius: 0px 0px 8px 8px;
