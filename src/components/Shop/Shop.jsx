@@ -5,19 +5,30 @@ import Cart from "../Cart/Cart";
 import { addToDb, getShoppingCart } from "../../utilities/fakedb";
 
 const Shop = () => {
-  
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("products.json")
-    .then((res) => res.json())
-    .then((data) => setProducts(data));
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
   }, []);
 
-  useEffect( ()=>{
+  useEffect(() => {
     const storedCart = getShoppingCart();
-    console.log(storedCart)
-  },[])
-  
+    const savedCart = [];
+    // step-1: loop through the object to get ID
+    for (const id in storedCart) {
+      // step-2: loop through the products array to find the matching products
+      const addedCart = products.find((product) => product.id === id);
+      // step-3: setting the matched product's quantity according to local storage
+      const quantity = storedCart[id];
+      if (addedCart) {
+        addedCart.quantity = quantity;
+        savedCart.push(addedCart);
+      }
+    }
+    setCart(savedCart)
+  }, [products]);
+
   const [cart, setCart] = useState([]);
   const handleAddToCart = (product) => {
     const newCart = [...cart, product];
@@ -37,7 +48,7 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart-container">
-        <Cart cart = {cart}></Cart>
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );
