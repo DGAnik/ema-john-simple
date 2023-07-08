@@ -9,7 +9,6 @@ const Cart = ({ cart }) => {
     // if(quantity === 0){
     //   quantity = 1;
     // }
-    product.quantity = product.quantity || 1;
     totalPrice = totalPrice + product.price * product.quantity;
     totalShipping = totalShipping + product.shipping * product.quantity;
     quantity = quantity + product.quantity;
